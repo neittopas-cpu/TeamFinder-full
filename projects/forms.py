@@ -2,14 +2,14 @@ from django import forms
 from .models import Project
 
 def validate_name_length(value, min_length=3):
-    """Проверяет, что длина имени (без учёта пробелов) не меньше min_length."""
+
     cleaned = value.strip() if isinstance(value, str) else value
     if len(cleaned) < min_length:
         raise forms.ValidationError(f"Минимум {min_length} символа")
     return cleaned
 
 def validate_github_url(value):
-    """Проверяет, что если URL указан, он ведёт на github.com."""
+
     if value and "github.com" not in value.lower():
         raise forms.ValidationError("Укажите ссылку на репозиторий GitHub")
     return value
